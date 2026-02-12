@@ -68,18 +68,60 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
         waterConsumption: `${zoneId * 2.5}M Liters`
     };
 
+    const defaultSpeciesData = [
+        { name: 'Neem', scientific: 'Azadirachta indica', weight: 95, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
+        { name: 'Peepal', scientific: 'Ficus religiosa', weight: 90, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
+        { name: 'Mango', scientific: 'Mangifera indica', weight: 85, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
+        { name: 'Banyan', scientific: 'Ficus benghalensis', weight: 80, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
+        { name: 'Ashoka', scientific: 'Saraca asoca', weight: 75, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
+        { name: 'Jamun', scientific: 'Syzygium cumini', weight: 70, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
+        { name: 'Arjun', scientific: 'Terminalia arjuna', weight: 65, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
+        { name: 'Gulmohar', scientific: 'Delonix regia', weight: 60, status: 'Healthy', statusColor: 'bg-emerald-100 text-emerald-800' },
+    ];
+
+    // Distribute totalPlantationCount among species based on weights
+    const totalWeight = defaultSpeciesData.reduce((acc, item) => acc + item.weight, 0);
+    let currentSum = 0;
+
+    const allSpeciesData = defaultSpeciesData.map((species, index) => {
+        let count = 0;
+        if (index === defaultSpeciesData.length - 1) {
+            // Assign remaining to last item to ensure exact sum
+            count = totalPlantationCount - currentSum;
+        } else {
+            count = Math.floor((species.weight / totalWeight) * totalPlantationCount);
+            currentSum += count;
+        }
+        return {
+            ...species,
+            count: count
+        };
+    });
+
+    // Charts Data Synchronization
+    // 1. Bar Chart: Distribute total across 5 years
+    // Weights for years
+    const yearWeights = [1, 1.2, 1.5, 1.3, 1.5];
+    const totalYearWeight = yearWeights.reduce((a, b) => a + b, 0);
+    let currentYearSum = 0;
+
+    const yearlyData = yearWeights.map((w, i) => {
+        let val = 0;
+        if (i === yearWeights.length - 1) {
+            val = totalPlantationCount - currentYearSum;
+        } else {
+            val = Math.floor((w / totalYearWeight) * totalPlantationCount);
+            currentYearSum += val;
+        }
+        return val;
+    });
+
     const barChartData = {
         labels: ['2019', '2020', '2021', '2022', '2023'],
         datasets: [
             {
                 label: 'Plantation Count',
-                data: [
-                    Math.floor(baseChartValue),
-                    Math.floor(baseChartValue * 1.2),
-                    Math.floor(baseChartValue * 1.5),
-                    Math.floor(baseChartValue * 1.3),
-                    Math.floor(baseChartValue * 1.5) // Adjusted to roughly sum up
-                ],
+                data: yearlyData,
                 backgroundColor: 'rgb(35, 107, 39,0.8)',
                 hoverBackgroundColor: 'rgb(35, 107, 39)',
                 borderColor: '#10b981',
@@ -90,17 +132,27 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
         ],
     };
 
+    // 2. Pie Chart: Use Species Data
+    const pieChartLabels = allSpeciesData.slice(0, 4).map(s => s.name);
+    pieChartLabels.push('Other');
+
+    const top4Count = allSpeciesData.slice(0, 4).reduce((sum, s) => sum + (s.count || 0), 0);
+    const otherCount = totalPlantationCount - top4Count;
+
+    const pieChartValues = allSpeciesData.slice(0, 4).map(s => s.count || 0);
+    pieChartValues.push(otherCount);
+
     const pieChartData = {
-        labels: ['Neem', 'Peepal', 'Mango', 'Banyan', 'Other'],
+        labels: pieChartLabels,
         datasets: [
             {
-                data: [28, 24, 20, 18, 10], // Percentage distribution
+                data: pieChartValues,
                 backgroundColor: [
-                    'rgb(35, 107, 39,1)',    // Neem - Vibrant Green
-                    'rgb(35, 107, 39,1)',   // Peepal - Light Green
-                    'rgb(35, 107, 39,1)',  // Mango - Very Light Green
-                    'rgb(35, 107, 39,1)',   // Banyan - Emerald
-                    'rgb(35, 107, 39,1)',  // Other - Pale Green
+                    'rgb(35, 107, 39,1)',    // Neem
+                    'rgb(46, 125, 50, 1)',   // Peepal 
+                    'rgb(76, 175, 80, 1)',   // Mango
+                    'rgb(102, 187, 106, 1)', // Banyan
+                    'rgb(165, 214, 167, 1)', // Other
                 ],
                 borderColor: '#ffffff',
                 borderWidth: 3,
@@ -186,35 +238,7 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
         }
     };
 
-    const defaultSpeciesData = [
-        { name: 'Neem', scientific: 'Azadirachta indica', weight: 95, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
-        { name: 'Peepal', scientific: 'Ficus religiosa', weight: 90, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
-        { name: 'Mango', scientific: 'Mangifera indica', weight: 85, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
-        { name: 'Banyan', scientific: 'Ficus benghalensis', weight: 80, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
-        { name: 'Ashoka', scientific: 'Saraca asoca', weight: 75, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
-        { name: 'Jamun', scientific: 'Syzygium cumini', weight: 70, status: 'Thriving', statusColor: 'bg-green-100 text-green-800' },
-        { name: 'Arjun', scientific: 'Terminalia arjuna', weight: 65, status: 'Growing', statusColor: 'bg-blue-100 text-blue-800' },
-        { name: 'Gulmohar', scientific: 'Delonix regia', weight: 60, status: 'Healthy', statusColor: 'bg-emerald-100 text-emerald-800' },
-    ];
 
-    // Distribute totalPlantationCount among species based on weights
-    const totalWeight = defaultSpeciesData.reduce((acc, item) => acc + item.weight, 0);
-    let currentSum = 0;
-
-    const allSpeciesData = defaultSpeciesData.map((species, index) => {
-        let count = 0;
-        if (index === defaultSpeciesData.length - 1) {
-            // Assign remaining to last item to ensure exact sum
-            count = totalPlantationCount - currentSum;
-        } else {
-            count = Math.floor((species.weight / totalWeight) * totalPlantationCount);
-            currentSum += count;
-        }
-        return {
-            ...species,
-            count: count
-        };
-    });
 
     // Filter species based on selected filter and search term
     const speciesData = allSpeciesData.filter(species => {
