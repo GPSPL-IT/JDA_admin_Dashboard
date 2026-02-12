@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+
+    <name>JDA Plantation Zones 2023-2024</name>
+
+    <!-- ===== STYLES ===== -->
+
+    <!-- High Plantation (Green) -->
+    <Style id="highZone">
+        <LineStyle>
+            <color>ff008000</color>
+            <width>2</width>
+        </LineStyle>
+        <PolyStyle>
+            <color>7d008000</color>
+        </PolyStyle>
+    </Style>
+
+    <!-- Medium Plantation (Orange) -->
+    <Style id="mediumZone">
+        <LineStyle>
+            <color>ff00a5ff</color>
+            <width>2</width>
+        </LineStyle>
+        <PolyStyle>
+            <color>7d00a5ff</color>
+        </PolyStyle>
+    </Style>
+
+    <!-- Low Plantation (Red) -->
+    <Style id="lowZone">
+        <LineStyle>
+            <color>ff0000ff</color>
+            <width>2</width>
+        </LineStyle>
+        <PolyStyle>
+            <color>7d0000ff</color>
+        </PolyStyle>
+    </Style>
+
+    <!-- ===== FOLDER ===== -->
+
+    <Folder>
+        <name>JDA Zones</name>
+
+        <!-- Zone 1 -->
+        <Placemark>
+            <name>Zone 1</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 290<br/>
+                <b>Status:</b> High Plantation
+            ]]></description>
+            <styleUrl>#highZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.7700,26.9400,0
+                            75.7900,26.9400,0
+                            75.7900,26.9200,0
+                            75.7700,26.9200,0
+                            75.7700,26.9400,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 2 -->
+        <Placemark>
+            <name>Zone 2</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 265<br/>
+                <b>Status:</b> High Plantation
+            ]]></description>
+            <styleUrl>#highZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.7900,26.9400,0
+                            75.8100,26.9400,0
+                            75.8100,26.9200,0
+                            75.7900,26.9200,0
+                            75.7900,26.9400,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 3 -->
+        <Placemark>
+            <name>Zone 3</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 248<br/>
+                <b>Status:</b> Medium Plantation
+            ]]></description>
+            <styleUrl>#mediumZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.7700,26.9200,0
+                            75.7900,26.9200,0
+                            75.7900,26.9000,0
+                            75.7700,26.9000,0
+                            75.7700,26.9200,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 4 -->
+        <Placemark>
+            <name>Zone 4</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 228<br/>
+                <b>Status:</b> Medium Plantation
+            ]]></description>
+            <styleUrl>#mediumZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.7900,26.9200,0
+                            75.8100,26.9200,0
+                            75.8100,26.9000,0
+                            75.7900,26.9000,0
+                            75.7900,26.9200,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 5 -->
+        <Placemark>
+            <name>Zone 5</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 207<br/>
+                <b>Status:</b> Medium Plantation
+            ]]></description>
+            <styleUrl>#mediumZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.8100,26.9400,0
+                            75.8300,26.9400,0
+                            75.8300,26.9200,0
+                            75.8100,26.9200,0
+                            75.8100,26.9400,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 6 -->
+        <Placemark>
+            <name>Zone 6</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 188<br/>
+                <b>Status:</b> Low Plantation
+            ]]></description>
+            <styleUrl>#lowZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.8100,26.9200,0
+                            75.8300,26.9200,0
+                            75.8300,26.9000,0
+                            75.8100,26.9000,0
+                            75.8100,26.9200,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+        <!-- Zone 7 -->
+        <Placemark>
+            <name>Zone 7</name>
+            <description><![CDATA[
+                <b>Year:</b> 2023-2024<br/>
+                <b>Trees Planted:</b> 168<br/>
+                <b>Status:</b> Low Plantation
+            ]]></description>
+            <styleUrl>#lowZone</styleUrl>
+            <Polygon>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>
+                            75.8300,26.9400,0
+                            75.8500,26.9400,0
+                            75.8500,26.9200,0
+                            75.8300,26.9200,0
+                            75.8300,26.9400,0
+                        </coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+
+    </Folder>
+
+</Document>
+</kml>

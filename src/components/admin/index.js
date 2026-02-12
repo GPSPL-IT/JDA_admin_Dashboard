@@ -1,0 +1,10 @@
+export { default as Sidebar } from './Sidebar';
+export { default as AdminHeader } from './AdminHeader';
+export { default as Dashboard } from './Dashboard';
+export { default as ZoneWise } from './plantation/ZoneWisePlantation';
+export { default as WardWise } from './plantation/WardWisePlantation';
+export { default as SpeciesWise } from './plantation/SpeciesWisePlantation';
+export { default as Event } from './plantation/EventPlantation';
+export { default as UserManagement } from './UserManagement';
+export { default as Reports } from './Reports';
+export { default as Profile } from './Profile';
