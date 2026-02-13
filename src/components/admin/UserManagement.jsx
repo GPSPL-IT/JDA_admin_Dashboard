@@ -249,8 +249,8 @@ const UserManagement = () => {
               </div>
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
-                  <span className="text-gray-500">{t('userManagement.role')}:</span>
-                  <span className="ml-1 px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs">{t(`userManagement.${user.role.toLowerCase()}`)}</span>
+                  <span className="text-gray-500">{t('role')}:</span>
+                  <span className="ml-1 px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs">{user.role}</span>
                 </div>
                 <div>
                   <span className="text-gray-500">{t('userManagement.status')}:</span>
@@ -303,7 +303,7 @@ const UserManagement = () => {
                 <div className="w-1/5">{user.name}</div>
                 <div className="w-1/5">{user.phone}</div>
                 <div className="w-1/5">
-                  <span className="px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs">{t(`userManagement.${user.role.toLowerCase()}`)}</span>
+                  <span className="px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs">{user.role}</span>
                 </div>
                 <div className="w-1/5">{user.location}</div>
                 <div className="w-1/5 text-right">
