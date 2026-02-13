@@ -12,7 +12,7 @@ const PLANTATION_DATA = [
         image: images.totalPlantation
     },
     {
-        title: "plantation",
+        title: " Today`s plantation",
         count: "1,06,500", // Matched with Table Totals from List.jsx
         icon: <FaTree className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />,
         color: "#FFD1BA",
