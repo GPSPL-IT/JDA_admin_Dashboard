@@ -344,18 +344,18 @@ const WardWisePlantation = () => {
                 </div>
             </div>
 
-            {/* Slider for mobile */}
+            {/* Grid for mobile */}
             <div className="sm:hidden w-full">
-                <div className="flex overflow-x-auto space-x-4 snap-x snap-mandatory pb-2">
+                <div className="grid grid-cols-1 gap-4">
                     {paginated.length === 0 ? (
-                        <div className="flex-shrink-0 w-72 bg-white rounded-lg shadow p-4 text-center text-gray-400">
+                        <div className="w-full bg-white rounded-lg shadow p-4 text-center text-gray-400">
                             No wards found.
                         </div>
                     ) : (
                         paginated.map((ward) => (
                             <div
                                 key={ward.id}
-                                className="flex-shrink-0 w-72 bg-white rounded-lg shadow p-4 snap-center"
+                                className="w-full bg-white rounded-lg shadow p-4"
                             >
                                 <div className="font-bold text-green-700 mb-2">{ward.wardName}</div>
                                 <div className="text-xs mb-1"><b>Ward No:</b> {ward.wardNumber}</div>

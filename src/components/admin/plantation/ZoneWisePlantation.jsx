@@ -340,25 +340,25 @@ const ZoneWisePlantation = () => {
                 </div>
             </div>
 
-            {/* Slider for mobile */}
+            {/* Grid for mobile */}
             <div className="sm:hidden w-full">
-                <div className="flex overflow-x-auto space-x-4 snap-x snap-mandatory pb-2">
+                <div className="grid grid-cols-1 gap-4">
                     {paginated.length === 0 ? (
-                        <div className="flex-shrink-0 w-72 bg-white rounded-lg shadow p-4 text-center text-gray-400">
-                            No zones found.
+                        <div className="w-full bg-white rounded-lg shadow p-4 text-center text-gray-400">
+                            {t('plantationTypes.noZonesFound')}
                         </div>
                     ) : (
                         paginated.map((zone) => (
                             <div
                                 key={zone.id}
-                                className="flex-shrink-0 w-72 bg-white rounded-lg shadow p-4 snap-center"
+                                className="w-full bg-white rounded-lg shadow p-4"
                             >
                                 <div className="font-bold text-green-700 mb-2">{zone.zoneName}</div>
-                                <div className="text-xs mb-1"><b>Area:</b> {zone.area} ha</div>
-                                <div className="text-xs mb-1"><b>Plant Count:</b> {zone.plantCount}</div>
-                                <div className="text-xs mb-1"><b>District:</b> {zone.district}</div>
+                                <div className="text-xs mb-1"><b>{t('plantationTypes.area')}:</b> {zone.area} ha</div>
+                                <div className="text-xs mb-1"><b>{t('plantationTypes.plantCount')}:</b> {zone.plantCount}</div>
+                                <div className="text-xs mb-1"><b>{t('plantationTypes.district')}:</b> {zone.district}</div>
                                 <div className="text-xs mb-1">
-                                    <b>Status:</b>{' '}
+                                    <b>{t('userManagement.status')}:</b>{' '}
                                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${zone.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
                                         {zone.status}
                                     </span>

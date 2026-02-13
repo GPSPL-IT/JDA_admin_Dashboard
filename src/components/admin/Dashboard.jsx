@@ -40,11 +40,11 @@ const Dashboard = ({ setActiveSection }) => {
 
   const timePeriodData = {
     allTime: {
-      plantation: 120000 ,
+      plantation: 120000,
       event: 12475,
       zone: 7,
       species: 8,
-      total:120000 // Aligned with Total Plantation
+      total: 120000 // Aligned with Total Plantation
     },
     thisYear: {
       plantation: 63900, // Approx 60%
@@ -129,7 +129,7 @@ const Dashboard = ({ setActiveSection }) => {
   return (
     <div className="p-3 sm:p-4 lg:p-6 min-h-screen">
       {/* Statistics Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
         {stats.map((stat, index) => (
           <StatCard key={index} {...stat} />
         ))}
@@ -196,7 +196,7 @@ const Dashboard = ({ setActiveSection }) => {
                   </div>
                   <div
                     className="flex flex-col items-center p-3 sm:p-4 rounded-lg cursor-pointer hover:bg-green-50 transition border border-gray-100"
-                    onClick={() => setActiveSection && setActiveSection('zone')}
+                    onClick={() => setActiveSection && setActiveSection('zonewise')}
                   >
                     <FaMapMarkerAlt className="text-2xl sm:text-3xl mb-2" style={{ color: MAIN_GREEN }} />
                     <p className="text-xs sm:text-sm text-gray-800 font-medium text-center">{t('dashboard.zone', 'Zone')}</p>
@@ -204,7 +204,7 @@ const Dashboard = ({ setActiveSection }) => {
                   </div>
                   <div
                     className="flex flex-col items-center p-3 sm:p-4 rounded-lg cursor-pointer hover:bg-green-50 transition border border-gray-100"
-                    onClick={() => setActiveSection && setActiveSection('species')}
+                    onClick={() => setActiveSection && setActiveSection('specieswise')}
                   >
                     <FaSeedling className="text-2xl sm:text-3xl mb-2" style={{ color: MAIN_GREEN }} />
                     <p className="text-xs sm:text-sm text-gray-800 font-medium text-center">{t('dashboard.species', 'Species')}</p>

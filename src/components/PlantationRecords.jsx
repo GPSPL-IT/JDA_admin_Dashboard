@@ -124,12 +124,9 @@ const PlantationRecords = memo(({ selectedDate, selectedEvent }) => {
         title: t(item.title)
     }));
     return (
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
             {plantationData.map((card, index) => (
-                <div
-                    className="w-[calc(50%-1rem)] sm:w-[calc(33.33%-1.5rem)] md:w-[calc(25%-1.5rem)] lg:w-[calc(20%-2rem)] xl:w-[calc(16.66%-2rem)] min-w-[200px]"
-                    key={index}
-                >
+                <div className="w-full min-w-[200px]" key={index}>
                     <PlantationCard {...card} />
                 </div>
             ))}

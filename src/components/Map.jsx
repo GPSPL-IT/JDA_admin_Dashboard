@@ -156,7 +156,7 @@ const Map = () => {
 
   return (
     <div className="flex flex-col lg:flex-row w-full lg:w-1/2 p-4 sm:p-6 lg:p-8">
-      <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm w-full h-[600px] flex flex-col">
+      <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm w-full h-[400px] lg:h-[600px] flex flex-col">
         {/* Header */}
         <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50 rounded-t-2xl">
           <div>

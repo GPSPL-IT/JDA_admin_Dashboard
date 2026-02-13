@@ -72,9 +72,9 @@ const SpecialEvents = memo(() => {
         navigate(`/events?event=${eventId}`);
     };
     return (
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 justify-items-center pb-8">
             {eventsData.map((event, index) => (
-                <div key={index} className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-2rem)] lg:w-[calc(25%-2.5rem)] xl:w-[calc(20%-2.5rem)] min-w-[260px] max-w-[340px]">
+                <div key={index} className="w-full min-w-[260px] max-w-[340px]">
                     <EventCard
                         {...event}
                         onClick={() => handleEventClick(event.id)}
