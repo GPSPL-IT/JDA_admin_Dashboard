@@ -140,22 +140,22 @@ const Reports = () => {
         <table className="min-w-full bg-white border rounded-lg">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Zone</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Zone</th>
+              <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+              <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+              <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+              <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredData.length > 0 ? (
               filteredData.map((row) => (
                 <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.zone}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.species}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.quantity}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900">{row.zone}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900">{row.species}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900">{row.quantity}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900">{row.date}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${row.status === 'Completed' ? 'bg-green-100 text-green-800' :
                       row.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
                         'bg-yellow-100 text-yellow-800'
@@ -233,17 +233,17 @@ const Reports = () => {
   };
 
   return (
-    <div className="p-2 sm:p-4 md:p-6 bg-gradient-to-br from-green-50 to-green-100 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full max-w-full overflow-x-hidden bg-gradient-to-br from-green-50 to-green-100 p-2 sm:p-6 lg:p-8">
+      <div className="w-full mx-auto max-w-7xl">
         {/* Header Section - Mobile Optimized */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 text-white">
+        <div className="w-full bg-gradient-to-r from-green-600 to-green-700 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 text-white relative z-10">
           <div className="flex flex-col gap-4">
-            <div className="text-center sm:text-left">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 flex items-center justify-center sm:justify-start">
-                <FaChartBar className="mr-2 sm:mr-3 text-lg sm:text-xl" />
-                {t('reports.title', 'Tree Plantation Reports')}
+            <div className="text-center sm:text-left w-full">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start">
+                <FaChartBar className="mb-2 sm:mb-0 sm:mr-3 text-lg sm:text-xl flex-shrink-0" />
+                <span className="break-words whitespace-normal">{t('reports.title', 'Tree Plantation Reports')}</span>
               </h1>
-              <p className="text-green-100 text-sm sm:text-base">
+              <p className="text-green-100 text-sm sm:text-base break-words whitespace-normal max-w-full">
                 {t('reports.subtitle', 'Generate comprehensive reports and export data in multiple formats')}
               </p>
             </div>
@@ -251,30 +251,30 @@ const Reports = () => {
         </div>
 
         {/* Enhanced Tabs - Mobile Optimized */}
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-6 mb-4 sm:mb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-2 mb-4 sm:mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
             {tabList.map((tab) => {
               const IconComponent = tab.icon;
               return (
                 <button
                   key={tab.key}
-                  className={`p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 transition-all duration-300 transform hover:scale-105 min-h-[80px] sm:min-h-[100px] ${activeTab === tab.key
+                  className={`p-2 sm:p-4 rounded-lg sm:rounded-xl border-2 transition-all duration-300 transform hover:scale-105 min-h-[70px] sm:min-h-[100px] flex items-center justify-center ${activeTab === tab.key
                     ? 'border-green-500 bg-green-50 shadow-lg'
                     : 'border-gray-200 bg-gray-50 hover:border-green-300 hover:bg-green-25'
                     }`}
                   onClick={() => setActiveTab(tab.key)}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-start gap-2 h-full w-full">
                     <IconComponent
-                      className={`text-lg sm:text-xl ${activeTab === tab.key ? 'text-green-600' : 'text-gray-500'
+                      className={`text-2xl sm:text-xl flex-shrink-0 ${activeTab === tab.key ? 'text-green-600' : 'text-gray-500'
                         }`}
                     />
-                    <div className="flex-1 min-w-0">
-                      <span className={`font-semibold text-sm sm:text-base block ${activeTab === tab.key ? 'text-green-700' : 'text-gray-700'
+                    <div className="flex-1 min-w-0 flex flex-col justify-center w-full">
+                      <span className={`font-semibold text-xs sm:text-base block text-center sm:text-left whitespace-normal leading-tight ${activeTab === tab.key ? 'text-green-700' : 'text-gray-700'
                         }`}>
                         {tab.label}
                       </span>
-                      <p className={`text-xs sm:text-sm mt-1 ${activeTab === tab.key ? 'text-green-600' : 'text-gray-500'
+                      <p className={`hidden md:block text-xs sm:text-sm mt-1 whitespace-normal text-center sm:text-left ${activeTab === tab.key ? 'text-green-600' : 'text-gray-500'
                         }`}>
                         {tab.description}
                       </p>
@@ -289,13 +289,13 @@ const Reports = () => {
         {/* Report Content - Mobile Optimized */}
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl overflow-hidden">
           {/* Content Header - Mobile Optimized */}
-          <div className="bg-gradient-to-r from-green-50 to-green-100 px-3 sm:px-6 py-3 sm:py-4 border-b border-green-200">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
-              <div className="text-center sm:text-left">
-                <h3 className="text-base sm:text-lg font-semibold text-green-800">
+          <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 mb-6 border border-gray-100">
+            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+              <div className="text-center sm:text-left w-full">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 break-words">
                   {tabList.find(tab => tab.key === activeTab)?.label}
                 </h3>
-                <p className="text-xs sm:text-sm text-green-600 mt-1">
+                <p className="text-gray-500 mt-1 break-words">
                   {tabList.find(tab => tab.key === activeTab)?.description}
                 </p>
               </div>
@@ -315,8 +315,8 @@ const Reports = () => {
             </div>
           </div>
 
-          {/* Report Content - Mobile Optimized */}
-          <div className="p-3 sm:p-6 md:p-8">
+          {/* Filter and Table Content */}
+          <div className="p-3 sm:p-6 md:p-8 overflow-x-hidden">
             {activeTab === 'zoneWise' && (
               <ZoneWiseFilter
                 zoneOptions={sampleZones}
@@ -343,6 +343,7 @@ const Reports = () => {
                 onReset={handleResetFilters}
               />
             )}
+            {/* Other filters can be added here */}
 
             {/* Render Results Table */}
             {renderDataTable()}
@@ -351,7 +352,7 @@ const Reports = () => {
 
         {/* Loading Overlay - Mobile Optimized */}
         {isGenerating && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/50">
             <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center shadow-2xl max-w-sm w-full">
               <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
               <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">Generating Report</h3>
@@ -360,7 +361,7 @@ const Reports = () => {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 

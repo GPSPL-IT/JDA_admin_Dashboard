@@ -212,7 +212,7 @@ const Events = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-green-100 via-green-50 to-green-200">
-      <main className="flex-1 p-0 sm:p-6 lg:p-10">
+      <main className="flex-1 p-4 pt-24 sm:p-6 lg:p-10">
         <div className="max-w-7xl mx-auto">
           {/* Event Heading */}
           <div className="mb-4">

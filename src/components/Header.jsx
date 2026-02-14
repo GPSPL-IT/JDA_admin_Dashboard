@@ -7,7 +7,7 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
   const { t } = useTranslation(); // Translation hook
 
   return (
-    <header className="w-full bg-white/80 shadow-md text-gray-800 px-4 sm:px-6 md:px-8 py-4 fixed top-0 z-50 border-b border-white/20 backdrop-blur-md transition-all duration-300">
+    <header className="w-full bg-white/80 shadow-md text-gray-800 px-4 sm:px-6 md:px-8 py-2 md:py-4 fixed top-0 z-50 border-b border-white/20 backdrop-blur-md transition-all duration-300">
       <div className="flex justify-between items-center h-full max-w-[1920px] mx-auto">
         {/* Toggle Button for mobile */}
         <button
@@ -20,7 +20,7 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
 
         {/* Left Logo with Text */}
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 p-2 rounded-xl hover:bg-white/40 transition-all duration-300 cursor-pointer group">
-          <div className="w-12 h-11 sm:w-14 sm:h-13 md:w-16 md:h-15 lg:w-18 lg:h-17 flex-shrink-0 transform group-hover:scale-105 transition-transform duration-300">
+          <div className="w-10 h-9 sm:w-14 sm:h-13 md:w-16 md:h-15 lg:w-18 lg:h-17 flex-shrink-0 transform group-hover:scale-105 transition-transform duration-300">
             <img
               src={images.jdaLogo}
               alt={t('left_logo')}
@@ -28,10 +28,10 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
             />
           </div>
           <div className="flex flex-col justify-center gap-0.5">
-            <h2 className="text-red-600 font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight tracking-wide drop-shadow-sm">
+            <h2 className="text-red-600 font-bold text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight tracking-wide drop-shadow-sm">
               JDA
             </h2>
-            <p className="text-red-600 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-tight font-bold drop-shadow-sm">
+            <p className="text-red-600 text-[10px] sm:text-sm md:text-base lg:text-lg xl:text-xl leading-tight font-bold drop-shadow-sm">
               Jaipur Development Authority
             </p>
           </div>
@@ -49,7 +49,7 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
         </div> */}
 
         {/* Right Logo */}
-        <div className="w-24 h-12 sm:w-28 sm:h-14 md:w-32 md:h-16 lg:w-36 lg:h-18 p-1.5 rounded-xl hover:bg-white/40 transition-all duration-300 cursor-pointer group flex items-center justify-center">
+        <div className="w-20 h-10 sm:w-28 sm:h-14 md:w-32 md:h-16 lg:w-36 lg:h-18 p-1.5 rounded-xl hover:bg-white/40 transition-all duration-300 cursor-pointer group flex items-center justify-center">
           <img
             src={images.geotree}
             alt={t('right_logo')}

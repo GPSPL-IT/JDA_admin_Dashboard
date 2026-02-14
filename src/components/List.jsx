@@ -39,27 +39,41 @@ const List = ({ selectedDate, selectedEvent }) => {
 
         // Base Data
         const baseZones = [
-            { zoneName: "Zone 1", indiv: 18500, block: 5000, nursery: 2000, total: 25500 },
-            { zoneName: "Zone 2", indiv: 16200, block: 4500, nursery: 1800, total: 22500 },
-            { zoneName: "Zone 3", indiv: 15800, block: 3800, nursery: 1500, total: 21100 },
-            { zoneName: "Zone 4", indiv: 14500, block: 3200, nursery: 1200, total: 18900 },
-            { zoneName: "Zone 5", indiv: 13500, block: 2800, nursery: 1000, total: 17300 },
-            { zoneName: "Zone 6", indiv: 15000, block: 4100, nursery: 1600, total: 20700 },
-            { zoneName: "Zone 7", indiv: 13000, block: 3500, nursery: 1400, total: 17900 }
+            { zoneName: "Zone 1", indiv: 19500, block: 5500, nursery: 2500, total: 27500 },
+            { zoneName: "Zone 2", indiv: 17500, block: 5000, nursery: 2000, total: 24500 },
+            { zoneName: "Zone 3", indiv: 16800, block: 4300, nursery: 2000, total: 23100 },
+            { zoneName: "Zone 4", indiv: 15500, block: 3900, nursery: 1500, total: 20900 },
+            { zoneName: "Zone 5", indiv: 14500, block: 3300, nursery: 1500, total: 19300 },
+            { zoneName: "Zone 6", indiv: 16000, block: 4700, nursery: 2000, total: 22700 },
+            { zoneName: "Zone 7", indiv: 13500, block: 3500, nursery: 1500, total: 18500 }
         ];
 
-        return baseZones.map(zone => {
+        // Derived Logic
+        const baseTotalSum = 156500; // Recalculated sum of above totals
+        const targetTotalData = Math.floor(baseTotalSum * variation);
+
+        let currentTotalSum = 0;
+
+        return baseZones.map((zone, index) => {
             const newIndiv = Math.floor(zone.indiv * variation);
             const newBlock = Math.floor(zone.block * variation);
             const newNursery = Math.floor(zone.nursery * variation);
-            const newTotal = Math.floor(zone.total * variation);
+
+            let newTotal;
+            if (index === baseZones.length - 1) {
+                // Adjust the last item to match the target total exactly
+                newTotal = targetTotalData - currentTotalSum;
+            } else {
+                newTotal = Math.floor(zone.total * variation);
+                currentTotalSum += newTotal;
+            }
 
             return {
                 ...zone,
                 indiv: newIndiv.toLocaleString('en-IN'),
                 block: newBlock.toLocaleString('en-IN'),
                 nursery: newNursery.toLocaleString('en-IN'),
-                total: newTotal.toLocaleString('en-IN') // This might not perfectly sum up due to individual flooring, but close enough
+                total: newTotal.toLocaleString('en-IN')
             };
         });
     }, [selectedDate, selectedEvent]);
@@ -105,7 +119,7 @@ const List = ({ selectedDate, selectedEvent }) => {
     const totalPlantation = React.useMemo(() => {
         return filteredZones.reduce((sum, zone) => {
             // Remove commas and parse as integer
-            const count = parseInt(zone.indiv.replace(/,/g, '')) || 0;
+            const count = parseInt(zone.total.replace(/,/g, '')) || 0;
             return sum + count;
         }, 0);
     }, [filteredZones]);
@@ -183,7 +197,7 @@ const List = ({ selectedDate, selectedEvent }) => {
                                                     {zone.zoneName}
                                                 </td>
                                                 <td className="px-6 py-4 text-sm text-right text-gray-600 font-medium font-mono">
-                                                    {zone.indiv}
+                                                    {zone.total}
                                                 </td>
                                                 <td className="px-6 py-4 text-center">
                                                     <button

@@ -10,13 +10,13 @@ const CustomFilter = ({
   speciesOptions = [],
   placeCategoryOptions = [],
   filterValues = {},
-  onChange = () => {},
-  onApply = () => {},
-  onReset = () => {},
+  onChange = () => { },
+  onApply = () => { },
+  onReset = () => { },
 }) => {
   const { t } = useTranslation();
   return (
-    <form className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <form className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
       <div>
         <label className="block mb-1 font-medium">{t('reports.state', 'State')}</label>
         <select className="w-full border rounded px-3 py-2" value={filterValues.state || ''} onChange={e => onChange('state', e.target.value)}>
@@ -67,7 +67,7 @@ const CustomFilter = ({
         <label className="block mb-1 font-medium">{t('reports.endDate', 'End Date')}</label>
         <input type="date" className="w-full border rounded px-3 py-2" value={filterValues.endDate || ''} onChange={e => onChange('endDate', e.target.value)} />
       </div>
-      <div className="col-span-1 md:col-span-3 flex gap-4 mt-4">
+      <div className="col-span-1 md:col-span-3 flex flex-wrap gap-4 mt-4">
         <button type="button" className="bg-green-600 text-white px-6 py-2 rounded" onClick={onApply}>{t('reports.applyFilter', 'Apply Filter')}</button>
         <button type="button" className="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded" onClick={onReset}>{t('reports.resetFilters', 'Reset Filters')}</button>
       </div>

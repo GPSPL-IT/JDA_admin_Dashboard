@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaImage, FaInfoCircle, FaDownload, FaFileExcel, FaFileCsv, FaPlus } from "react-icons/fa";
 import images from '../../../assets/images';
 import { useTranslation } from 'react-i18next';
+import SpeciesDetails from '../../SpeciesDetails';
 
 // Sample species data
 const sampleSpecies = [
@@ -439,69 +440,19 @@ const SpeciesWisePlantation = () => {
             )}
 
             {/* Info Modal */}
+            {/* Info Modal */}
             {showInfoModal && selectedSpecies && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 px-2">
-                    <div className="bg-white rounded-lg p-2 sm:p-6 w-full max-w-sm sm:max-w-3xl relative max-h-[80vh] overflow-y-auto">
-                        <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl" onClick={closeModals}>&times;</button>
-                        <h3 className="text-base sm:text-lg font-bold mb-4">{selectedSpecies.speciesName} - Detailed Information</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 mb-4 text-xs sm:text-base">
-                            <div><span className="font-semibold">Species Name:</span> {selectedSpecies.speciesName}</div>
-                            <div><span className="font-semibold">Scientific Name:</span> <span className="italic">{selectedSpecies.scientificName}</span></div>
-                            <div><span className="font-semibold">Total Planted:</span> {selectedSpecies.totalPlanted.toLocaleString()}</div>
-                            <div>
-                                <span className="font-semibold">Survival Rate:</span>{' '}
-                                <span className={`font-semibold ${selectedSpecies.survivalRate >= 90 ? 'text-green-600' : selectedSpecies.survivalRate >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
-                                    {selectedSpecies.survivalRate}%
-                                </span>
-                            </div>
-                            <div><span className="font-semibold">Status:</span> <span className={selectedSpecies.status === 'Active' ? 'text-green-600' : 'text-blue-600'}>{selectedSpecies.status}</span></div>
-                            <div><span className="font-semibold">Category:</span> {selectedSpecies.category}</div>
-                            <div><span className="font-semibold">Native Status:</span> {selectedSpecies.nativeStatus}</div>
-                            <div><span className="font-semibold">Growth Rate:</span> {selectedSpecies.growthRate}</div>
-                            <div><span className="font-semibold">Height:</span> {selectedSpecies.height}</div>
-                            <div><span className="font-semibold">Contact Person:</span> {selectedSpecies.contactPerson}</div>
-                            <div><span className="font-semibold">Contact Number:</span> {selectedSpecies.contactNumber}</div>
-                            <div className="col-span-1 sm:col-span-2">
-                                <span className="font-semibold">Planting Seasons:</span> {selectedSpecies.plantingSeasons.join(', ')}
-                            </div>
-                            <div className="col-span-1 sm:col-span-2">
-                                <span className="font-semibold">Benefits:</span> {selectedSpecies.benefits}
-                            </div>
-                        </div>
-                        {/* Zones and Wards */}
-                        <div className="mb-4">
-                            <button
-                                className="font-semibold mb-1 flex items-center gap-2"
-                                onClick={() => setShowZonesWards((prev) => !prev)}
-                            >
-                                Zones & Wards Distribution
-                                <span>{showZonesWards ? "▲" : "▼"}</span>
-                            </button>
-                            {showZonesWards && (
-                                <div className="mt-2">
-                                    <div className="mb-2">
-                                        <span className="font-semibold text-sm">Zones:</span>
-                                        <div className="flex gap-2 flex-wrap mt-1">
-                                            {selectedSpecies.zones.map((zone, idx) => (
-                                                <span key={idx} className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                                                    {zone}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span className="font-semibold text-sm">Wards:</span>
-                                        <div className="flex gap-2 flex-wrap mt-1">
-                                            {selectedSpecies.wards.map((ward, idx) => (
-                                                <span key={idx} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-                                                    {ward}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+                    <div
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+                        onClick={closeModals}
+                    ></div>
+                    <div className="relative w-full max-w-7xl max-h-[95vh] bg-white rounded-2xl shadow-2xl overflow-hidden animate-scaleIn flex flex-col">
+                        <SpeciesDetails
+                            speciesName={selectedSpecies.speciesName}
+                            speciesData={selectedSpecies}
+                            onClose={closeModals}
+                        />
                     </div>
                 </div>
             )}

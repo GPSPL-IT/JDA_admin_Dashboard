@@ -48,8 +48,12 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
 
     if (zoneData) {
         // Use actual data from keys
-        // 'indiv' is main "Plantation" count in table
-        totalPlantationCount = parseInt(zoneData.indiv.replace(/,/g, '')) || 0;
+        // Prioritize 'total' as it matches the table display, otherwise fallback to 'indiv'
+        if (zoneData.total) {
+            totalPlantationCount = parseInt(zoneData.total.replace(/,/g, '')) || 0;
+        } else {
+            totalPlantationCount = parseInt(zoneData.indiv.replace(/,/g, '')) || 0;
+        }
         zoneId = parseInt(zoneName?.replace(/[^0-9]/g, '') || '1');
         // Derive base value for charts (approx split over 5 years + growth)
         baseChartValue = Math.floor(totalPlantationCount / 5.5);
@@ -122,9 +126,9 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
             {
                 label: 'Plantation Count',
                 data: yearlyData,
-                backgroundColor: 'rgb(35, 107, 39,0.8)',
-                hoverBackgroundColor: 'rgb(35, 107, 39)',
-                borderColor: '#10b981',
+                backgroundColor: 'rgb(121, 173, 145,0.8)',
+                hoverBackgroundColor: 'rgb(121, 173, 145,1)',
+                borderColor: '#79AD91',
                 borderWidth: 0,
                 borderRadius: 8,
                 barThickness: 50,
@@ -184,7 +188,7 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                 padding: 12,
                 titleFont: { size: 13, weight: '600' },
                 bodyFont: { size: 12 },
-                borderColor: 'rgb(35, 107, 39,0.3)',
+                borderColor: 'rgb(121, 173, 145,0.3)',
                 borderWidth: 1
             }
         },
@@ -232,7 +236,7 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                 padding: 12,
                 titleFont: { size: 13, weight: '600' },
                 bodyFont: { size: 12 },
-                borderColor: 'rgb(35, 107, 39,0.3)',
+                borderColor: 'rgb(121, 173, 145,0.3)',
                 borderWidth: 1
             }
         }

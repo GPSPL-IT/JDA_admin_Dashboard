@@ -157,6 +157,7 @@
         "addNewEvent": "Add New Event",
         "searchZone": "Search zone...",
         "searchSpecies": "Search species names...",
+        "searchPlaceholder": "Search for events, locations, or departments...",
         "totalEvents": "Total Events",
         "treesPlanted": "Total Trees Planted",
         "eventList": "Event List",

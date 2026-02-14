@@ -87,6 +87,7 @@ const AdminLayout = () => {
         ${isSidebarOpen ? 'md:ml-64' : 'ml-0'}
         pt-16
         min-h-screen
+        w-full max-w-full overflow-x-hidden
       `}>
         {renderContent()}
       </main>

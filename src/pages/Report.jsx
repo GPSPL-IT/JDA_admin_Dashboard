@@ -434,27 +434,27 @@ const Report = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] pt-20 pb-12">
+    <div className="min-h-screen bg-[#F3F4F6] pt-24 pb-12">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 font-poppins">
+        <div className="mb-8 text-center sm:text-left">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 font-poppins text-wrap">
             {activeTab === 'zoneWise' ? 'Zone Wise Reports' :
               activeTab === 'speciesWise' ? 'Species Wise Reports' :
                 t(`reportHeaders.${activeTab}`)}
           </h1>
-          <p className="text-gray-500 mt-1 font-poppins">Generate comprehensive reports with advanced filtering.</p>
+          <p className="text-gray-500 mt-1 font-poppins text-sm sm:text-base break-words max-w-full">Generate comprehensive reports with advanced filtering.</p>
         </div>
 
         {/* Tabs */}
-        <div className="mb-8 overflow-x-auto scrollbar-hide">
-          <div className="flex space-x-2 bg-white/60 p-1.5 rounded-xl border border-white/50 backdrop-blur-md inline-flex min-w-full sm:min-w-0">
+        <div className="mb-8">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-2 bg-white/60 p-1.5 rounded-xl border border-white/50 backdrop-blur-md">
             {Object.keys(filterFields).map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
-                className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 whitespace-nowrap font-poppins capitalize ${activeTab === tab
+                className={`px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 whitespace-nowrap font-poppins capitalize flex-grow sm:flex-grow-0 ${activeTab === tab
                   ? 'bg-[#2E7D32] text-white shadow-md'
                   : 'text-gray-600 hover:text-[#2E7D32] hover:bg-white/50'
                   }`}
@@ -466,12 +466,12 @@ const Report = () => {
         </div>
 
         {/* Filter Card */}
-        <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm p-6 sm:p-8 mb-8 relative overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm p-4 sm:p-8 mb-8 relative overflow-hidden">
           {/* Decorative background element */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-green-50 rounded-full opacity-50 -mr-16 -mt-16 pointer-events-none blur-3xl"></div>
 
           <div className="relative z-10">
-            <div className="flex items-center mb-6">
+            <div className="flex items-center justify-center sm:justify-start mb-6">
               <div className="bg-green-100 p-2 rounded-lg mr-3 text-[#2E7D32]">
                 <FaFilter />
               </div>

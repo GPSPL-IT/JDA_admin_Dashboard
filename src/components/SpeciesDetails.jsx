@@ -28,22 +28,30 @@ ChartJS.register(
     Filler
 );
 
-const SpeciesDetails = () => {
-    const { speciesName } = useParams();
+const SpeciesDetails = ({ speciesName: propSpeciesName, speciesData: propSpeciesData, onClose }) => {
+    const { speciesName: paramSpeciesName } = useParams();
     const navigate = useNavigate();
     const location = useLocation(); // Use useLocation to get state
     const { t } = useTranslation();
 
+    // Determine if we are in modal mode
+    const isModal = !!onClose;
+    const speciesName = propSpeciesName || paramSpeciesName;
+
     // Get data from state if available
-    const speciesData = location.state?.speciesData;
+    const speciesData = propSpeciesData || location.state?.speciesData;
 
     // Mock Data Generators based on Species Name
     const cleanName = decodeURIComponent(speciesName).split(' ')[0];
 
     // Determine the main total count
     let totalPlantedCount = 0;
-    if (speciesData && speciesData.total) {
-        totalPlantedCount = parseInt(speciesData.total.replace(/,/g, '')) || 0;
+    if (speciesData) {
+        if (typeof speciesData.totalPlanted === 'number') {
+            totalPlantedCount = speciesData.totalPlanted;
+        } else if (speciesData.total) {
+            totalPlantedCount = parseInt(speciesData.total.replace(/,/g, '')) || 0;
+        }
     } else {
         // Fallback
         const baseValue = cleanName.length * 1500;
@@ -53,8 +61,8 @@ const SpeciesDetails = () => {
     const summaryData = {
         totalPlanted: totalPlantedCount.toLocaleString('en-IN'),
         carbonOffset: `${(totalPlantedCount * 0.005).toFixed(1)} Tons`, // Adjusted formula
-        growthRate: 'Moderate-Fast',
-        avgHeight: '15-20 Meters'
+        growthRate: speciesData?.growthRate || 'Moderate-Fast',
+        avgHeight: speciesData?.height || '15-20 Meters'
     };
 
     const growthChartData = {
@@ -64,11 +72,11 @@ const SpeciesDetails = () => {
                 label: 'Average Height (ft)',
                 data: [2, 5, 12, 18, 25],
                 fill: true,
-                backgroundColor: 'rgba(46, 125, 50, 0.2)',
-                borderColor: '#2E7D32',
+                backgroundColor: 'rgb(121, 173, 145,0.8)',
+                borderColor: '#79AD91',
                 tension: 0.4,
                 pointBackgroundColor: '#fff',
-                pointBorderColor: '#2E7D32',
+                pointBorderColor: '#79AD91',
                 pointRadius: 5,
             },
         ],
@@ -96,7 +104,7 @@ const SpeciesDetails = () => {
             {
                 label: 'Plantation Count',
                 data: zoneCounts,
-                backgroundColor: 'rgba(102, 187, 106, 0.8)',
+                backgroundColor: 'rgb(121, 173, 145,0.8)',
                 borderRadius: 4,
                 barThickness: 20,
             },
@@ -126,27 +134,30 @@ const SpeciesDetails = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#F3F4F6] pb-10 pt-20">
+        <div className={isModal ? "bg-gray-50 h-[80vh] overflow-y-auto" : "min-h-screen bg-[#F3F4F6] pb-10 pt-20"}>
             {/* Header Section */}
-            <div className="bg-[#1B5E20] text-white py-8 px-4 sm:px-6 lg:px-8 shadow-lg relative overflow-hidden">
+            <div className={`bg-[#1B5E20] text-white ${isModal ? 'py-6 px-6' : 'py-8 px-4 sm:px-6 lg:px-8'} shadow-lg relative overflow-hidden`}>
                 <div className="absolute top-0 right-0 opacity-10 transform translate-x-10 -translate-y-10">
                     <FaLeaf size={300} />
                 </div>
                 <div className="max-w-7xl mx-auto relative z-10">
                     <button
-                        onClick={() => navigate(-1)}
+                        onClick={isModal ? onClose : () => navigate(-1)}
                         className="flex items-center text-white/80 hover:text-white transition-colors mb-4 group"
                     >
                         <FaArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                        {t('backToSpecies', 'Back to Species List')}
+                        {isModal ? t('close', 'Close') : t('backToSpecies', 'Back to Species List')}
                     </button>
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                         <div>
                             <h1 className="text-3xl font-bold font-poppins">{decodeURIComponent(speciesName)}</h1>
-                            <p className="text-green-100 mt-1 italic">{t('scientificName', 'Scientific Name: ')} <span className="font-semibold">Azadirachta indica</span> (Mock)</p>
+                            <p className="text-green-100 mt-1 italic">{t('scientificName', 'Scientific Name: ')} <span className="font-semibold">
+                                {speciesData?.scientificName ||
+                                    (speciesName.includes('(') ? speciesName.split('(')[1].replace(')', '') : 'Azadirachta indica')}
+                            </span></p>
                         </div>
                         <div className="mt-4 md:mt-0 flex gap-2">
-                            <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/20">Medicinal</span>
+                            {speciesData?.category && <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/20">{speciesData.category}</span>}
                             <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/20">Timber</span>
                             <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/20">Shade</span>
                         </div>
@@ -154,7 +165,7 @@ const SpeciesDetails = () => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+            <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isModal ? 'py-8' : '-mt-8'} relative z-20`}>
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <SummaryCard

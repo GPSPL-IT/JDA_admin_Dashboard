@@ -13,7 +13,7 @@ const PLANTATION_DATA = [
     },
     {
         title: " Today`s plantation",
-        count: "1,06,500", // Matched with Table Totals from List.jsx
+        count: "1,56,500", // Matched with Base Total from List.jsx and Department.jsx (156,500)
         icon: <FaTree className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />,
         color: "#FFD1BA",
         image: images.individualPlantation
