@@ -76,6 +76,19 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
+// Component to invalidate map size on mount to fix rendering issues
+const MapInvalidator = () => {
+  const map = useMap();
+  useEffect(() => {
+    // Small delay to ensure container has resized
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+};
+
 const Map = () => {
   const { t } = useTranslation('map');
 
@@ -156,11 +169,11 @@ const Map = () => {
 
   return (
     <div className="flex flex-col lg:flex-row w-full lg:w-1/2 p-4 sm:p-6 lg:p-8">
-      <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm w-full h-[400px] lg:h-[600px] flex flex-col">
+      <div className="bg-white rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm w-full h-[500px] lg:h-[600px] flex flex-col">
         {/* Header */}
         <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50 rounded-t-2xl">
           <div>
-            <h2 className="text-xl font-bold text-[#2E7D32] flex items-center gap-2">
+            <h2 className="text-base sm:text-xl font-bold text-[#2E7D32] flex items-center gap-2">
               <span className="p-1.5 bg-[#E8F5E9] rounded-lg">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -173,7 +186,7 @@ const Map = () => {
               Interactive map of plantation zones
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium text-[#2E7D32] bg-[#E8F5E9] hover:bg-[#C8E6C9] rounded-full transition-colors duration-200 flex items-center gap-2 shadow-sm">
+          <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-[#2E7D32] bg-[#E8F5E9] hover:bg-[#C8E6C9] rounded-full transition-colors duration-200 flex items-center gap-2 shadow-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
             </svg>
@@ -185,10 +198,10 @@ const Map = () => {
         <div className="px-6 py-3 border-b border-gray-100 bg-white">
           <div className="flex flex-wrap gap-4 items-center justify-center sm:justify-start">
             {legendItems.map((item, index) => (
-              <div key={index} className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100">
+              <div key={index} className="flex items-center gap-1.5 bg-gray-50 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full border border-gray-100">
                 <div className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: item.color }} />
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-semibold text-gray-700 font-[Poppins]">
+                  <span className="text-[10px] sm:text-xs font-semibold text-gray-700 font-[Poppins]">
                     {item.label}
                   </span>
                   <span className="text-[10px] text-gray-400 border-l border-gray-300 pl-1.5">
@@ -201,7 +214,7 @@ const Map = () => {
         </div>
 
         {/* Leaflet Map */}
-        <div className="relative h-[calc(100%-130px)] z-0">
+        <div className="relative flex-1 z-0 min-h-0">
           <div className="absolute inset-0 p-3 sm:p-4 md:p-6">
             <div className="h-full rounded-xl border border-[#E0E0E0] overflow-hidden">
               <MapContainer
@@ -209,11 +222,10 @@ const Map = () => {
                 zoom={zoomLevel}
                 minZoom={6}
                 maxZoom={18}
-                maxBounds={rajasthanBounds}
-                maxBoundsViscosity={1.0}
                 style={{ height: '100%', width: '100%' }}
                 scrollWheelZoom={true}
               >
+                <MapInvalidator />
                 <LayersControl position="topright">
                   <LayersControl.BaseLayer checked name="OpenStreetMap">
                     <TileLayer

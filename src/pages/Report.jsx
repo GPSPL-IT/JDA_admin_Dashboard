@@ -50,25 +50,25 @@ const ZoneSummaryTable = ({ data }) => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#F9FAFB]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Zone Name</th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Target</th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Achieved</th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Survival %</th>
-                <th className="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Status</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Zone Name</th>
+                <th className="px-2 sm:px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Target</th>
+                <th className="px-2 sm:px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Achieved</th>
+                <th className="px-2 sm:px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Survival %</th>
+                <th className="px-2 sm:px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">Status</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {data.map((row, index) => (
                 <tr key={index} className="hover:bg-green-50/30 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 font-poppins">{row.zone}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right font-mono">{row.target.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-mono font-bold">{row.total.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-mono">
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900 font-poppins">{row.zone}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-500 text-right font-mono">{row.target.toLocaleString()}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900 text-right font-mono font-bold">{row.total.toLocaleString()}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900 text-right font-mono">
                     <span className={`px-2 py-1 rounded-full text-xs font-semibold ${row.survival >= 80 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
                       {row.survival}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-center">
                     <span className="text-xs font-medium text-gray-500">Active</span>
                   </td>
                 </tr>
@@ -113,16 +113,16 @@ const SpeciesSummaryTable = ({ data }) => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#F9FAFB]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
                   {t("filters.labels.species")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
                   Scientific Name
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
+                <th className="px-2 sm:px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
                   {t("summary.totalTrees")}
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
+                <th className="px-2 sm:px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider font-poppins">
                   % of Total
                 </th>
               </tr>
@@ -130,10 +130,10 @@ const SpeciesSummaryTable = ({ data }) => {
             <tbody className="bg-white divide-y divide-gray-100">
               {data.map((row, index) => (
                 <tr key={index} className="hover:bg-green-50/30 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 font-poppins">{row.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 italic font-poppins">{row.scientific}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-mono font-medium">{row.count.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right font-mono">
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900 font-poppins">{row.name}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-500 italic font-poppins">{row.scientific}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-900 text-right font-mono font-medium">{row.count.toLocaleString()}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-normal md:whitespace-nowrap text-xs sm:text-sm text-gray-500 text-right font-mono">
                     {((row.count / totalTrees) * 100).toFixed(1)}%
                   </td>
                 </tr>

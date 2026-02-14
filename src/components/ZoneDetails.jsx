@@ -253,9 +253,9 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
     });
 
     return (
-        <div className={isModal ? "bg-gray-50 max-h-[90vh] overflow-y-auto" : "min-h-screen bg-gradient-to-br from-gray-50 via-green-50/20 to-emerald-50/30 pb-12 pt-20"}>
+        <div className={isModal ? "bg-gray-50 h-full overflow-y-auto" : "min-h-screen bg-gradient-to-br from-gray-50 via-green-50/20 to-emerald-50/30 pb-12 pt-20"}>
             {/* Enhanced Header Section with Gradient */}
-            <div className={`relative bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white ${isModal ? 'py-6 px-6' : 'py-12 px-4 sm:px-6 lg:px-8'} shadow-2xl overflow-hidden`}>
+            <div className={`relative bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white ${isModal ? 'py-3 px-3 sm:py-6 sm:px-6' : 'py-12 px-4 sm:px-6 lg:px-8'} shadow-2xl overflow-hidden`}>
                 {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-400/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
@@ -263,21 +263,21 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                 <div className="max-w-7xl mx-auto relative z-10">
                     <button
                         onClick={isModal ? onClose : () => navigate(-1)}
-                        className="flex items-center text-white/90 hover:text-white transition-all mb-6 group bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg hover:bg-white/20"
+                        className="flex items-center text-white/90 hover:text-white transition-all mb-2 sm:mb-6 group bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg hover:bg-white/20"
                     >
                         <FaArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                        <span className="font-medium">{isModal ? t('close', 'Close') : t('back', 'Back to List')}</span>
+                        <span className="font-medium text-sm sm:text-base">{isModal ? t('close', 'Close') : t('back', 'Back to List')}</span>
                     </button>
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-                        <div className="flex items-start gap-4">
-                            <div className="bg-white/15 backdrop-blur-md p-4 rounded-2xl border border-white/20">
-                                <FaTree className="text-4xl text-white" />
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 sm:gap-6">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                            <div className="bg-white/15 backdrop-blur-md p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
+                                <FaTree className="text-2xl sm:text-4xl text-white" />
                             </div>
                             <div>
-                                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+                                <h1 className="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-1 sm:mb-2 lead-tight">
                                     {decodeURIComponent(zoneName)} {t('overview', 'Overview')}
                                 </h1>
-                                <p className="text-green-100 text-lg font-medium">
+                                <p className="text-green-100 text-xs sm:text-lg font-medium">
                                     {t('zoneDetailsSubtitle', 'Detailed plantation analytics and performance metrics')}
                                 </p>
                             </div>
@@ -293,9 +293,9 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                 </div>
             </div>
 
-            <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isModal ? 'py-8' : '-mt-10'}`}>
+            <div className={`max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 ${isModal ? 'py-4 sm:py-8' : '-mt-10'}`}>
                 {/* Enhanced Summary Cards with Consistent Green Gradient */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-10">
                     <SummaryCard
                         title="Total Plantation"
                         value={summaryData.totalPlantation}
@@ -327,29 +327,29 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                 </div>
 
                 {/* Enhanced Charts Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-10">
                     {/* Yearly Trend with Better Styling */}
-                    <div className="lg:col-span-2 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100/50 p-8 hover:shadow-3xl transition-shadow">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full"></div>
-                            <h3 className="text-xl font-bold text-gray-800">
+                    <div className="lg:col-span-2 bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100/50 p-4 sm:p-8 hover:shadow-3xl transition-shadow">
+                        <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                            <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full"></div>
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-800">
                                 {t('yearlyProgress', 'Yearly Plantation Progress')}
                             </h3>
                         </div>
-                        <div className="h-80">
+                        <div className="h-64 sm:h-80">
                             <Bar options={chartOptions} data={barChartData} />
                         </div>
                     </div>
 
                     {/* Species Distribution with Better Styling */}
-                    <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100/50 p-8 hover:shadow-3xl transition-shadow">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full"></div>
-                            <h3 className="text-xl font-bold text-gray-800">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100/50 p-4 sm:p-8 hover:shadow-3xl transition-shadow">
+                        <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                            <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full"></div>
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-800">
                                 {t('speciesDist', 'Species Distribution')}
                             </h3>
                         </div>
-                        <div className="h-80 flex items-center justify-center">
+                        <div className="h-64 sm:h-80 flex items-center justify-center">
                             <Pie options={pieOptions} data={pieChartData} />
                         </div>
                     </div>
@@ -357,23 +357,23 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
 
 
                 {/* Enhanced Table with Modern Design */}
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-100/50 overflow-hidden hover:shadow-3xl transition-shadow">
-                    <div className="px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-green-50/30">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100/50 overflow-hidden hover:shadow-3xl transition-shadow">
+                    <div className="px-4 py-4 sm:px-8 sm:py-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-green-50/30">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                                <FaTrophy className="text-2xl text-yellow-500" />
-                                <h3 className="text-xl font-bold text-gray-800">
+                            <div className="flex items-center gap-2 sm:gap-3">
+                                <FaTrophy className="text-xl sm:text-2xl text-yellow-500" />
+                                <h3 className="text-lg sm:text-xl font-bold text-gray-800">
                                     {t('topSpecies', 'Top Performing Species in Zone')}
                                 </h3>
                             </div>
 
                             {/* Filter Controls */}
-                            <div className="flex flex-col sm:flex-row gap-3">
+                            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                                 {/* Species Filter Dropdown */}
                                 <select
                                     value={selectedSpecies}
                                     onChange={(e) => setSelectedSpecies(e.target.value)}
-                                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm font-medium text-gray-700 shadow-sm hover:border-green-400 transition-colors"
+                                    className="px-3 py-1.5 sm:px-4 sm:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-xs sm:text-sm font-medium text-gray-700 shadow-sm hover:border-green-400 transition-colors"
                                 >
                                     <option value="all">All Species</option>
                                     {allSpeciesData.map((species) => (
@@ -389,7 +389,7 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                                     placeholder="Search species..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm placeholder-gray-400 shadow-sm hover:border-green-400 transition-colors min-w-[200px]"
+                                    className="px-3 py-1.5 sm:px-4 sm:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-xs sm:text-sm placeholder-gray-400 shadow-sm hover:border-green-400 transition-colors min-w-[150px] sm:min-w-[200px]"
                                 />
 
                                 {/* Clear Filters Button */}
@@ -399,7 +399,7 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                                             setSelectedSpecies('all');
                                             setSearchTerm('');
                                         }}
-                                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium shadow-sm"
+                                        className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-xs sm:text-sm font-medium shadow-sm"
                                     >
                                         Clear
                                     </button>
@@ -411,29 +411,29 @@ const ZoneDetails = ({ zoneName: propZoneName, zoneData, onClose }) => {
                         <table className="min-w-full">
                             <thead className="bg-gradient-to-r from-gray-50 to-green-50/20">
                                 <tr>
-                                    <th className="px-8 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Species Name</th>
-                                    <th className="px-8 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Scientific Name</th>
-                                    <th className="px-8 py-4 text-right text-xs font-bold text-gray-600 uppercase tracking-wider">Plantation Count</th>
-                                    <th className="px-8 py-4 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Status</th>
+                                    <th className="px-4 py-3 sm:px-8 sm:py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Species Name</th>
+                                    <th className="px-4 py-3 sm:px-8 sm:py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Scientific Name</th>
+                                    <th className="px-4 py-3 sm:px-8 sm:py-4 text-right text-xs font-bold text-gray-600 uppercase tracking-wider">Plantation Count</th>
+                                    <th className="px-4 py-3 sm:px-8 sm:py-4 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Status</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white/50 backdrop-blur-sm divide-y divide-gray-100">
                                 {speciesData.map((species, i) => (
                                     <tr key={i} className="hover:bg-green-50/30 transition-colors group">
-                                        <td className="px-8 py-5 whitespace-nowrap">
-                                            <div className="flex items-center gap-3">
+                                        <td className="px-4 py-3 sm:px-8 sm:py-5 whitespace-nowrap">
+                                            <div className="flex items-center gap-2 sm:gap-3">
                                                 <div className="w-2 h-2 bg-green-500 rounded-full group-hover:scale-150 transition-transform"></div>
-                                                <span className="text-sm font-semibold text-gray-900">{species.name}</span>
+                                                <span className="text-xs sm:text-sm font-semibold text-gray-900">{species.name}</span>
                                             </div>
                                         </td>
-                                        <td className="px-8 py-5 whitespace-nowrap">
-                                            <span className="text-sm text-gray-600 italic font-medium">{species.scientific}</span>
+                                        <td className="px-4 py-3 sm:px-8 sm:py-5 whitespace-nowrap">
+                                            <span className="text-xs sm:text-sm text-gray-600 italic font-medium">{species.scientific}</span>
                                         </td>
-                                        <td className="px-8 py-5 whitespace-nowrap text-right">
-                                            <span className="text-sm font-bold text-gray-900">{species.count.toLocaleString()}</span>
+                                        <td className="px-4 py-3 sm:px-8 sm:py-5 whitespace-nowrap text-right">
+                                            <span className="text-xs sm:text-sm font-bold text-gray-900">{species.count.toLocaleString()}</span>
                                         </td>
-                                        <td className="px-8 py-5 whitespace-nowrap text-center">
-                                            <span className={`px-4 py-2 inline-flex text-xs font-bold rounded-full ${species.statusColor} shadow-sm`}>
+                                        <td className="px-4 py-3 sm:px-8 sm:py-5 whitespace-nowrap text-center">
+                                            <span className={`px-2 py-1 sm:px-4 sm:py-2 inline-flex text-[10px] sm:text-xs font-bold rounded-full ${species.statusColor} shadow-sm`}>
                                                 {species.status}
                                             </span>
                                         </td>
@@ -455,7 +455,7 @@ const FaMapMarkerAltDummy = ({ className }) => (
 );
 
 const SummaryCard = ({ title, value, icon: Icon, gradient, iconBg }) => (
-    <div className={`bg-gradient-to-br ${gradient} text-white rounded-2xl shadow-xl p-6 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group`}>
+    <div className={`bg-gradient-to-br ${gradient} text-white rounded-2xl shadow-xl p-4 sm:p-6 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group`}>
         {/* Decorative background circle */}
         <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
 
